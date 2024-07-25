@@ -286,12 +286,12 @@ void RenderingSystem::updateRenderer(Camera camera, std::chrono::duration<double
 
 		//colors
 		glm::vec3 color;
-		glm::vec3 red = glm::vec3(1.0f, 0.5f, 0.5f);    // Adjusted to be darker
-		glm::vec3 darkRed = glm::vec3(1.0f, 0.0f, 0.0f);
-		glm::vec3 blue = glm::vec3(0.7f, 0.7f, 1.0f);
-		glm::vec3 green = glm::vec3(0.7f, 1.0f, 0.7f);
-		glm::vec3 yellow = glm::vec3(1.0f, 1.0f, 0.7f);
-		glm::vec3 pink = glm::vec3(1.0f, 0.75f, 0.75f);  // Adjusted to be darker
+		glm::vec3 red = glm::vec3(0.6f, 0.3f, 0.3f);      // Adjusted to be darker but slightly lighter than before
+		glm::vec3 darkRed = glm::vec3(0.6f, 0.05f, 0.05f); // Slightly lighter but still dark
+		glm::vec3 blue = glm::vec3(0.45f, 0.45f, 0.65f);   // Adjusted to be darker but slightly lighter than before
+		glm::vec3 green = glm::vec3(0.45f, 0.65f, 0.45f);  // Adjusted to be darker but slightly lighter than before
+		glm::vec3 yellow = glm::vec3(0.6f, 0.6f, 0.45f);   // Adjusted to be darker but slightly lighter than before
+		glm::vec3 pink = glm::vec3(0.6f, 0.45f, 0.45f);    // Adjusted to be darker but slightly lighter than before
 		glm::vec3 white = glm::vec3(1.0f);
 		glm::vec3 black = glm::vec3(0.0f);
 
@@ -662,20 +662,20 @@ void RenderingSystem::updateRenderer(Camera camera, std::chrono::duration<double
 		if (dataSys->carInfoList[0].isAlive) {
 
 			// Convert timeLeftInSeconds to string
-			std::string timeLeftStr = std::to_string(timeLeftInSeconds);
-			RenderText(textShader, textVAO, textVBO, timeLeftStr, 10.0f / 800.0f * monitorWidth, 570.0f / 600.0f * monitorHeight, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f), Characters_gaegu);
+			std::string timeLeftStr = std::to_string(timeLeftInSeconds) + " seconds";
+			RenderText(textShader, textVAO, textVBO, timeLeftStr, 35.0f / 800.0f * monitorWidth, 565.0f / 600.0f * monitorHeight, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f), Characters_gaegu);
 
 			//ammo count
-			std::string ammoCount = std::to_string(dataSys->carInfoList[0].ammoCount);
-			RenderText(textShader, textVAO, textVBO, ammoCount, 10.0f / 800.0f * monitorWidth, 30.0f / 600.0f * monitorHeight, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f), Characters_gaegu);
+			std::string ammoCount = "Ammo: " + std::to_string(dataSys->carInfoList[0].ammoCount);
+			RenderText(textShader, textVAO, textVBO, ammoCount, 50.0f / 800.0f * monitorWidth, 45.0f / 600.0f * monitorHeight, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f), Characters_gaegu);
 
 			//scoreboard
 			std::string score = "Score:";
-			RenderText(textShader, textVAO, textVBO, score, 610.0f / 800.0f * monitorWidth, 570.0f / 600.0f * monitorHeight, 1.5f, glm::vec3(1.0f, 1.0f, 1.0f), Characters_gaegu);
+			RenderText(textShader, textVAO, textVBO, score, 680.0f / 800.0f * monitorWidth, 550.0f / 600.0f * monitorHeight, 1.5f, glm::vec3(0.0f, 0.0f, 0.0f), Characters_gaegu);
 
-			std::string parry = "Parry Available";
+			std::string parry = "Available";
 			if (dataSys->carInfoList[0].parryCooldownTimeLeft < 0) {
-				RenderText(textShader, textVAO, textVBO, parry, 10.0f / 800.0f * monitorWidth, 60.0f / 600.0f * monitorHeight, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f), Characters_gaegu);
+				RenderText(textShader, textVAO, textVBO, parry, 50.0f / 800.0f * monitorWidth, 75.0f / 600.0f * monitorHeight, 1.0f, glm::vec3(1.0f, 1.0f, 1.0f), Characters_gaegu);
 			}
 			//else
 			//{
@@ -701,7 +701,7 @@ void RenderingSystem::updateRenderer(Camera camera, std::chrono::duration<double
 				}
 				float yOffset = i * 30;
 				std::string playerScore = "Player " + std::to_string(i + 1) + ": " + std::to_string(dataSys->carInfoList[i].score);
-				RenderText(textShader, textVAO, textVBO, playerScore, (610.0f / 800.f) * monitorWidth, ((540.0f - yOffset) / 600.f * monitorHeight), 1.0f, color, Characters_gaegu);
+				RenderText(textShader, textVAO, textVBO, playerScore, (680.0f / 800.f) * monitorWidth, ((520.0f - yOffset) / 600.f * monitorHeight), 1.0f, color, Characters_gaegu);
 			}
 
 			//displays active powerups (temp until VFX)
